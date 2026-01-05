@@ -56,6 +56,8 @@ docker compose down
 
 ### REST (gateway-rest -> processor-rest)
 
+#### PowerShell
+
 ```powershell
 $body = @{ value = 123; delay_ms = 0 } | ConvertTo-Json
 iwr http://localhost:8000/process -Method Post -ContentType "application/json" -Body $body -UseBasicParsing
@@ -66,6 +68,20 @@ iwr http://localhost:8000/process -Method Post -ContentType "application/json" -
 ```powershell
 $body = @{ value = 123; delay_ms = 0 } | ConvertTo-Json
 iwr http://localhost:8002/process -Method Post -ContentType "application/json" -Body $body -UseBasicParsing
+```
+
+#### bash (with cURL)
+
+```bash
+curl -X POST http://localhost:8000/process \
+  -H "Content-Type: application/json" \
+  -d '{"value":123,"delay_ms":0}'
+```
+
+```bash
+curl -X POST http://localhost:8002/process \
+  -H "Content-Type: application/json" \
+  -d '{"value":123,"delay_ms":0}'
 ```
 
 ---
